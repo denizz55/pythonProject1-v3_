@@ -1,0 +1,32 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<h2>Процент</h2>
+{% if records %}
+<div class="leftovers">
+    <button type="button" class="btn btn-success mb-3"
+            onclick="location.href = '/percentcreate'">Добавить 
+    </button>
+    <table class="table">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Дата\Время</th>
+            <th scope="col">Рейтинг</th>
+        </tr>
+        {% for elem in records %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{elem.ts}}</td>
+            <td>{{elem.rate}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<p>У нас нет записей</p>
+{% endif %}
+{% endblock %}
