@@ -150,3 +150,6 @@ class PercentCreate(CreateView):
     extra_context = {
         'title': 'Процент',
     }
+
+def profit_by_mounth(request):
+    return render(request, 'myapp/profit_by_mounth.html')

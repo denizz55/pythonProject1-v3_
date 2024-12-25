@@ -14,5 +14,5 @@ urlpatterns = [
     path('percent/', views.PercentList.as_view(), name='percent'),
     path('percentcreate/', views.PercentCreate.as_view(), name='percentcreate'),
     path('profit/', views.Profit, name='profit'),
-
+    path('profit_by_mounth/', views.profit_by_mounth, name='profit_by_mounth'),
 ]
