@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.http import JsonResponse
 
 from .forms import ModuleForm, PurchaseForm, SaleForm, PercentForm
 from .models import Register, Products, Percent
@@ -151,5 +152,45 @@ class PercentCreate(CreateView):
         'title': 'Процент',
     }
 
-def profit_by_mounth(request):
-    return render(request, 'myapp/profit_by_mounth.html')
+
+
+def profit_count_data(request):
+    result = None
+    with connection.cursor() as cursor:
+        cursor.execute("""SELECT DATE_FORMAT(ts, '%Y-%m') as mdate, sum(n_profit) as profit FROM testdb.profit
+group by mdate;)
+        """)
+        result = cursor.fetchall()
+    labels = []
+    values = []
+    for elem in result:
+        labels.append(elem[0])
+        values.append(elem[1])
+    return JsonResponse({'labels': labels, 'values': values})
+
+
+
+def profit_count_chart(request):
+    return render(request, 'myapp/profit_count_chart.html')
+
+
+
+
+def profit_count_data_2(request):
+    result = None
+    with connection.cursor() as cursor:
+        cursor.execute("""SELECT DATE_FORMAT(ts, '%Y-%m') as mdate, sum(quantite) as profit FROM testdb.profit
+group by mdate;)
+        """)
+        result = cursor.fetchall()
+    labels = []
+    values = []
+    for elem in result:
+        labels.append(elem[0])
+        values.append(elem[1])
+    return JsonResponse({'labels': labels, 'values': values})
+
+
+
+def profit_count_chart_2(request):
+    return render(request, 'myapp/profit_count_chart_2.html')

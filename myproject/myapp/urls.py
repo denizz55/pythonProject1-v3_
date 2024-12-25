@@ -14,5 +14,8 @@ urlpatterns = [
     path('percent/', views.PercentList.as_view(), name='percent'),
     path('percentcreate/', views.PercentCreate.as_view(), name='percentcreate'),
     path('profit/', views.Profit, name='profit'),
-    path('profit_by_mounth/', views.profit_by_mounth, name='profit_by_mounth'),
+    path('profitcount-data/', views.profit_count_data, name='profit_count_data'),
+    path('profitcount-chart/', views.profit_count_chart, name='profit_count_chart'),
+    path('profitcount-data_2/', views.profit_count_data_2, name='profit_count_data_2'),
+    path('profitcount-chart_2/', views.profit_count_chart_2, name='profit_count_chart_2'),
 ]
